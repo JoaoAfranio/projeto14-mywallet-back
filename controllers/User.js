@@ -17,7 +17,7 @@ async function login(req, res) {
     res.send({ ...user, token });
     return;
   } else {
-    res.sendStatus(401);
+    res.status(401).send({ message: "Email ou senha incorreta" });
     return;
   }
 }

@@ -7,7 +7,7 @@ async function registerMidd(req, res, next) {
   const validation = register.validate(user);
 
   if (validation.error) {
-    res.sendStatus(422);
+    res.send(validation.error).status(422);
     return;
   }
 
@@ -15,7 +15,7 @@ async function registerMidd(req, res, next) {
     const userExists = await db.collection("users").findOne({ email: user.email });
 
     if (userExists) {
-      res.sendStatus(409);
+      res.status(409).send({ message: "Usuário já existe" });
       return;
     }
 
@@ -40,7 +40,7 @@ async function loginMidd(req, res, next) {
     const user = await db.collection("users").findOne({ email });
 
     if (!user) {
-      res.sendStatus(404);
+      res.status(404).send({ message: "Email não cadastrado" });
       return;
     }
 
