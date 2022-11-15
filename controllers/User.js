@@ -38,4 +38,24 @@ async function register(req, res) {
   }
 }
 
-export default { login, register };
+async function logout(req, res) {
+  const { authorization } = req.headers;
+  const token = authorization?.replace("Bearer ", "");
+
+  if (!token) {
+    res.sendStatus(401);
+    return;
+  }
+
+  try {
+    await db.collection("sessions").findOneAndDelete({ token });
+    res.sendStatus(200);
+    return;
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(404);
+    return;
+  }
+}
+
+export default { login, register, logout };

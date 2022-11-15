@@ -16,6 +16,7 @@ app.use(express.json());
 
 app.post("/login", userMiddleware.loginMidd, userController.login);
 app.post("/register", userMiddleware.registerMidd, userController.register);
+app.post("/logout", userController.logout);
 
 app.post("/record", AuthMiddleware.authMidd, recordMiddleware.newRecordMidd, recordController.register);
 app.get("/record", AuthMiddleware.authMidd, recordController.findAllRecordsByID);
