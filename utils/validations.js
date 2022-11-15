@@ -14,7 +14,7 @@ const register = Joi.object({
 
 const record = Joi.object({
   userId: Joi.string().alphanum().required(),
-  description: Joi.string().alphanum().required(),
+  description: Joi.string().required(),
   value: Joi.number().required(),
   date: Joi.string().required(),
   type: Joi.string().valid("input", "output").required(),

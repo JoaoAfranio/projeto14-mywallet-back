@@ -18,6 +18,7 @@ app.post("/login", userMiddleware.loginMidd, userController.login);
 app.post("/register", userMiddleware.registerMidd, userController.register);
 
 app.post("/record", AuthMiddleware.authMidd, recordMiddleware.newRecordMidd, recordController.register);
+app.get("/record", AuthMiddleware.authMidd, recordController.findAllRecordsByID);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
