@@ -5,6 +5,7 @@
   "main": "App.js",
   "type": "module",
   "scripts": {
+    "start": "node src/App.js",
     "dev": "nodemon src/App.js"
   },
   "repository": {
