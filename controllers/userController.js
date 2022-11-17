@@ -22,7 +22,7 @@ async function login(req, res) {
   }
 }
 
-async function register(req, res) {
+async function insertUser(req, res) {
   const user = req.body;
 
   const passwordhash = bcrypt.hashSync(user.password, 10);
@@ -38,7 +38,7 @@ async function register(req, res) {
   }
 }
 
-async function logout(req, res) {
+async function deleteSession(req, res) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
 
@@ -58,4 +58,4 @@ async function logout(req, res) {
   }
 }
 
-export default { login, register, logout };
+export { login, insertUser, deleteSession };

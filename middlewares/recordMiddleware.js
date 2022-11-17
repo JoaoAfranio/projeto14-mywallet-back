@@ -2,7 +2,7 @@ import { record as recValidate } from "../utils/validations.js";
 import db from "../utils/database.js";
 import { ObjectId } from "mongodb";
 
-async function newRecordMidd(req, res, next) {
+async function validateRecord(req, res, next) {
   const record = req.body;
 
   const validation = recValidate.validate(record);
@@ -27,4 +27,4 @@ async function newRecordMidd(req, res, next) {
   }
 }
 
-export default { newRecordMidd };
+export { validateRecord };

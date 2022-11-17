@@ -1,7 +1,7 @@
 import db from "../utils/database.js";
 import { ObjectId } from "mongodb";
 
-async function register(req, res) {
+async function insertRecord(req, res) {
   const record = req.body;
 
   try {
@@ -36,4 +36,4 @@ async function findAllRecordsByID(req, res) {
   }
 }
 
-export default { register, findAllRecordsByID };
+export { insertRecord, findAllRecordsByID };

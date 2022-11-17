@@ -1,6 +1,6 @@
 import db from "../utils/database.js";
 
-async function authMidd(req, res, next) {
+async function authenticationToken(req, res, next) {
   const { authorization } = req.headers;
   const token = authorization?.replace("Bearer ", "");
 
@@ -23,4 +23,4 @@ async function authMidd(req, res, next) {
   }
 }
 
-export default { authMidd };
+export { authenticationToken };

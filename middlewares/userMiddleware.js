@@ -1,7 +1,7 @@
 import { register, login } from "../utils/validations.js";
 import db from "../utils/database.js";
 
-async function registerMidd(req, res, next) {
+async function validateInsertUser(req, res, next) {
   const user = req.body;
 
   const validation = register.validate(user);
@@ -26,7 +26,7 @@ async function registerMidd(req, res, next) {
   }
 }
 
-async function loginMidd(req, res, next) {
+async function validateLogin(req, res, next) {
   const { email, password } = req.body;
 
   const validation = login.validate({ email, password });
@@ -51,4 +51,4 @@ async function loginMidd(req, res, next) {
   }
 }
 
-export default { registerMidd, loginMidd };
+export { validateInsertUser, validateLogin };
