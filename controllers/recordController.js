@@ -14,20 +14,12 @@ async function insertRecord(req, res) {
 }
 
 async function findAllRecordsByID(req, res) {
-  const { authorization } = req.headers;
-  const token = authorization?.replace("Bearer ", "");
-
-  const user = await db.collection("sessions").findOne({ token });
-
-  if (!user.userId) {
-    res.sendStatus(401);
-    return;
-  }
+  const session = res.session;
 
   try {
     const allRecords = await db
       .collection("records")
-      .find({ userId: ObjectId(user.userId) })
+      .find({ userId: ObjectId(session.userId) })
       .toArray();
     res.status(200).send(allRecords);
   } catch (err) {

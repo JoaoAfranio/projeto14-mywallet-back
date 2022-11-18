@@ -10,6 +10,8 @@ async function login(req, res) {
   if (user && bcrypt.compareSync(password, user.password)) {
     const token = uuidV4();
 
+    await db.collection("sessions").deleteOne({ userId: user._id });
+
     await db.collection("sessions").insertOne({ userId: user._id, token });
 
     delete user.password;
@@ -39,16 +41,10 @@ async function insertUser(req, res) {
 }
 
 async function deleteSession(req, res) {
-  const { authorization } = req.headers;
-  const token = authorization?.replace("Bearer ", "");
-
-  if (!token) {
-    res.sendStatus(401);
-    return;
-  }
+  const session = res.session;
 
   try {
-    await db.collection("sessions").findOneAndDelete({ token });
+    await db.collection("sessions").deleteOne({ userId: session.userId });
     res.sendStatus(200);
     return;
   } catch (err) {

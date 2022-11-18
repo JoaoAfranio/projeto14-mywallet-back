@@ -16,6 +16,7 @@ async function authenticationToken(req, res, next) {
       return res.sendStatus(401);
     }
 
+    res.session = session;
     next();
   } catch (err) {
     console.log(err);
