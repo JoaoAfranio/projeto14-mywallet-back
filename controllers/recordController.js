@@ -14,7 +14,7 @@ async function insertRecord(req, res) {
 }
 
 async function findAllRecordsByID(req, res) {
-  const session = res.session;
+  const session = res.locals.session;
 
   try {
     const allRecords = await db

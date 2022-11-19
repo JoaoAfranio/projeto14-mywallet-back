@@ -41,7 +41,7 @@ async function insertUser(req, res) {
 }
 
 async function deleteSession(req, res) {
-  const session = res.session;
+  const session = res.locals.session;
 
   try {
     await db.collection("sessions").deleteOne({ userId: session.userId });
